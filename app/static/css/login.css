@@ -166,3 +166,17 @@ body
 	color: #ff2770;
 	font-weight: 600;
 }
+
+/* 登录页面通用样式 */
+.error {
+    color: red; /* 设置文字颜色为红色 */
+    font-size: 14px; /* 设置文字大小为 14 像素 */
+    text-align: center; /* 文字居中对齐 */
+    margin-bottom: 10px; /* 底部外边距为 10 像素，增加与下方内容的距离 */
+    padding: 5px; /* 内边距为 5 像素，增大背景色区域 */
+    background-color: rgba(255, 0, 0, 0.1); /* 背景颜色设置为淡红色（透明度为 0.1） */
+    border-radius: 5px; /* 圆角设置为 5 像素 */
+    max-width: 100%; /* 最大宽度为容器的 80%，以便居中显示 */
+    margin: 10px auto; /* 上下外边距为 10px，左右自动居中 */
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.3); /* 添加红色阴影，增强视觉效果 */
+}

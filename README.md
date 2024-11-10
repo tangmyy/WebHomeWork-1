@@ -1,10 +1,23 @@
 # README.md
 ## 说明文档
-### 
+
+---
+##### 克隆命令
+```
+git clone https://github.com/tangmyy/WebHomeWork-1.git
+```
+---
 ##### 环境安装
 ```
 conda create -n name python=3.9
 ```
+---
+##### 账号列表
+| 用户名 |密码|
+|:---:|:-:|
+| lwj |2220676|
+| zhangxing |2220677|
+| cjcj |2220678|
 ---
 
 MyFirst-flaskProject
