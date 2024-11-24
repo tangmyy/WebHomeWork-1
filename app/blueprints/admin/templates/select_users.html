@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>用户管理</title>
+    </head>
+    <body>
+        <h1>用户管理页面</h1>
+        <p>这里可以查看、编辑和删除用户。</p>
+
+        <!-- 返回管理员首页 -->
+        <ul>
+            <li><a href="{{ url_for('admin.add_user') }}">新增用户</a></li>
+            <li><a href="{{ url_for('admin.dashboard') }}">返回首页</a></li>
+        </ul>
+
+        <!-- 用户列表表格 -->
+        <table border="1" cellspacing="0" cellpadding="5">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>用户名</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>
+                        <a href="{{ url_for('admin.edit_user', user_id=user.id) }}">编辑</a> |
+                        <form action="{{ url_for('admin.delete_user', user_id=user.id) }}" method="post" style="display:inline;">
+                            <button type="submit" onclick="return confirm('确认删除该用户吗？');">删除</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>

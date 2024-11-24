@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员首页</title>
+</head>
+<body>
+    <h1>欢迎来到管理员后台</h1>
+    <p>这是管理后台的首页</p>
+    <ul>
+        <li><a href="{{ url_for('admin.select_users') }}">用户管理</a></li>
+        <li><a href="{{ url_for('admin.add') }}">新增用户</a></li>
+    </ul>
+</body>
+</html>
