@@ -2,6 +2,8 @@ import secrets
 
 from flask import Flask, redirect
 from .extensions import bcrypt, login_manager
+# app\__init__.py
+
 from .blueprints import register_blueprints
 from .db_utils import User
 
