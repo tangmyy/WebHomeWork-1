@@ -40,3 +40,41 @@ class User(UserMixin):
             logger.error(f"数据库查询失败: {e}")
         return None
 
+    @staticmethod
+    def get_all_non_admin_users():
+        """获取所有非管理员用户"""
+        with sqlite3.connect(DATABASE) as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT id, username FROM users WHERE is_admin = 0")
+            results = cursor.fetchall()
+            users = [{'id': row[0], 'username': row[1]} for row in results]
+            return users
+
+    @staticmethod
+    def update_user(user_id, new_username):
+        """更新用户信息"""
+        with sqlite3.connect(DATABASE) as conn:
+            cursor = conn.cursor()
+            cursor.execute("UPDATE users SET username = ? WHERE id = ?", (new_username, user_id))
+            conn.commit()
+
+    @staticmethod
+    def delete_user(user_id):
+        """删除用户"""
+        with sqlite3.connect(DATABASE) as conn:
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM users WHERE id = ?", (user_id,))
+            conn.commit()
+
+    @staticmethod
+    def create_user(username, password):
+        """新增普通用户"""
+        with sqlite3.connect(DATABASE) as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "INSERT INTO users (username, password, is_admin) VALUES (?, ?, ?)",
+                (username, password, 0)  # 新增用户默认不是管理员
+            )
+            conn.commit()
+
+
