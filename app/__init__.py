@@ -5,6 +5,8 @@ from .extensions import bcrypt, login_manager
 from .blueprints import register_blueprints
 from .db_utils import User
 
+# Flask 应用工厂函数，用于创建和配置 Flask 应用实例
+
 def create_app():
     app = Flask(__name__)
 

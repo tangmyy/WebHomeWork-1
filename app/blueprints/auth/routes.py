@@ -15,16 +15,19 @@ def login():
             user = User.get_user_by_username_and_password(username, password)
             if user:
                 login_user(user)
-                return redirect(url_for('auth.home'))
+                if user.is_admin:  # 判断是否是管理员
+                    return redirect(url_for('admin.dashboard'))  # 跳转到管理员首页
+                else:
+                    return redirect(url_for('auth.home'))  # 跳转到普通用户主页
             else:
                 flash('用户名或密码错误，请检查输入。', 'error')
-    return render_template('a.html')
+    return render_template('login.html')
 
 @auth.route('/home')
 @login_required
 def home():
     """用户主页"""
-    return render_template('b.html', username=current_user.username)
+    return render_template('home.html', username=current_user.username)
 
 @auth.route('/logout')
 @login_required

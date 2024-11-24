@@ -1,6 +1,8 @@
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 
+# 集中管理 Flask 扩展的初始化，避免循环导入问题。
+
 # 创建扩展实例
 bcrypt = Bcrypt()
 login_manager = LoginManager()
