@@ -5,11 +5,10 @@ from datetime import datetime
 from flask import Blueprint, redirect, flash, request, url_for
 from flask_login import login_required, current_user
 
-from app.blueprints.alipay.pay import alipay_obj, ALIPAY_SETTING
+from app.alipay.pay import alipay_obj, ALIPAY_SETTING
 
+from . import alipay_bp  # 导入蓝图实例
 
-# 蓝图
-alipay_bp = Blueprint("alipay", __name__, template_folder="templates")
 
 # 数据库路径
 DATABASE = 'users.db'
@@ -41,21 +40,18 @@ def payfail():
 def place_order(subtotal):
     # 获取当前时间
     cur_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
     # 插入订单记录到数据库
     insert_order_query = '''
         INSERT INTO orders (user_id, total_price, time)
         VALUES (?, ?, ?)
     '''
     execute_query(insert_order_query, params=(current_user.id, subtotal, cur_time), commit=True)
-
     # 获取刚刚插入的订单 ID
     fetch_order_query = '''
         SELECT id FROM orders WHERE user_id = ? ORDER BY id DESC LIMIT 1
     '''
     order = execute_query(fetch_order_query, params=(current_user.id,), fetchone=True)
     order_id = order[0]
-
     # 调用支付宝支付
     alipay = alipay_obj()
     order_string = alipay.api_alipay_trade_page_pay(

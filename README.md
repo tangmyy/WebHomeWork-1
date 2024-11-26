@@ -12,7 +12,16 @@ git clone https://github.com/tangmyy/WebHomeWork-1.git
 conda create -n name python=3.9
 ```
 ---
-##### 账号列表
+### 支付功能在my51esshop_class1118中已调通 待移植
+
+---
+##### 管理员账号列表
+|  用户名  | 密码  |
+|:-----:|:---:|
+| admin | 123 |
+
+---
+##### 用户账号列表
 | 用户名 |密码|
 |:---:|:-:|
 | lwj |2220676|

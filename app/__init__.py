@@ -1,13 +1,17 @@
+# app\__init__.py
 import secrets
 
 from flask import Flask, redirect
-from .extensions import bcrypt, login_manager
-# app\__init__.py
 
-from .blueprints import register_blueprints
 from .db_utils import User
+from .extensions import bcrypt, login_manager
 
-# Flask 应用工厂函数，用于创建和配置 Flask 应用实例
+
+# 从软件包中 导入Blueprint蓝图对象
+from .auth import auth
+from .admin import admin
+from .alipay import alipay_bp
+
 
 def create_app():
     app = Flask(__name__)
@@ -21,7 +25,9 @@ def create_app():
     login_manager.login_view = 'auth.login'
 
     # 注册蓝图
-    register_blueprints(app)
+    app.register_blueprint(auth, url_prefix='/auth')
+    app.register_blueprint(admin, url_prefix='/admin')
+    app.register_blueprint(alipay_bp, url_prefix='/alipay')
 
     # 添加根路径重定向
     @app.route('/')
