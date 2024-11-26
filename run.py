@@ -1,4 +1,6 @@
-from app import app
+# run.py
+
+from app import create_app
 
 app.debug = True
 
