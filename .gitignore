@@ -1,0 +1,9 @@
+# # 忽略特定文件
+# app/alipay/alipay_private.pem
+# app/alipay/public.pem
+# # 忽略整个文件夹
+# app/admin/static/css/
+# # 忽略 app/alipay 目录下的所有文件，但保留 routes.py
+# app/alipay/*
+# !app/alipay/routes.py
+

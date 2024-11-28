@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: MyFlaskApp
+    env: python
+    buildCommand: ""
+    startCommand: python run.py
+    region: oregon
+    branch: main
+    healthCheckPath: /
+    autoDeploy: true
